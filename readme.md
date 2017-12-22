@@ -2,7 +2,7 @@
 ``
 npm install
 ``
-## Run Project-baseline application
+## Run base application
 ```
 npm run build
 npm start

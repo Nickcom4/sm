@@ -33,8 +33,6 @@ export default class Dashboard {
     let container = document.createElement('div')
     container.id = 'container'
     
-    //create 'flex' container to hold content???
-        
     let title = document.createElement('h1')
     title.style.color = '#dddddd'
     title.style.textAlign = 'left'
@@ -46,41 +44,28 @@ export default class Dashboard {
     logo.style.width = '150px'
     title.append(logo)
     //title.append('Sunrise Marine')
-    
     //content.append(title)
     container.appendChild(title)
 
+    let section = document.createElement('section') 
+    section.classList.add('responsive')
     //Open each object in data
     data.forEach((item) => {
       //create new slide for each object
-      let section = new Section(item)
+      console.log(item)
       //execute getContent in section class to pull data onto section
+      let slide = new Slide(item)
       //add new section to container of dashboard
-      container.append(section.getContent())
+      container.append(slide.getContent())
+
     })
+    container.append(section)
 
     return container
 
     }
 
   animate(){
-    var slideIndex = 1
-    showDivs(slideIndex)
 
-    let plusDivs = (n) => {
-        showDivs(slideIndex += n)
-    }
-
-    let showDivs = (n) => {
-        var i
-        var x = document.getElementsByClassName("mySlides")
-        //console.log(x)
-        if (n > x.length) {slideIndex = 1}    
-        if (n < 1) {slideIndex = x.length}
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none"  
-        }
-        x[slideIndex-1].style.display = "block"  
-    }
   }
 }

@@ -148,8 +148,6 @@ class Dashboard {
     let container = document.createElement('div')
     container.id = 'container'
     
-    //create 'flex' container to hold content???
-        
     let title = document.createElement('h1')
     title.style.color = '#dddddd'
     title.style.textAlign = 'left'
@@ -161,42 +159,29 @@ class Dashboard {
     logo.style.width = '150px'
     title.append(logo)
     //title.append('Sunrise Marine')
-    
     //content.append(title)
     container.appendChild(title)
 
+    let section = document.createElement('section') 
+    section.classList.add('responsive')
     //Open each object in data
     data.forEach((item) => {
       //create new slide for each object
-      let section = new __WEBPACK_IMPORTED_MODULE_0__components_section__["a" /* default */](item)
+      console.log(item)
       //execute getContent in section class to pull data onto section
+      let slide = new Slide(item)
       //add new section to container of dashboard
-      container.append(section.getContent())
+      container.append(slide.getContent())
+
     })
+    container.append(section)
 
     return container
 
     }
 
   animate(){
-    var slideIndex = 1
-    showDivs(slideIndex)
 
-    let plusDivs = (n) => {
-        showDivs(slideIndex += n)
-    }
-
-    let showDivs = (n) => {
-        var i
-        var x = document.getElementsByClassName("mySlides")
-        //console.log(x)
-        if (n > x.length) {slideIndex = 1}    
-        if (n < 1) {slideIndex = x.length}
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none"  
-        }
-        x[slideIndex-1].style.display = "block"  
-    }
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Dashboard;
@@ -208,53 +193,29 @@ class Dashboard {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Section{
+class Slide {
   constructor(options){
     this.options = options
   }
   getContent(){
+    //let section = document.createElement('section')
 
-
-    let section = document.createElement('div')
-
-    //section.classList.add('col-6')
-    section.style.height = '300px'
+    //section.classList.add('responsive')
+    //section.style.height = '300px'
     //section.style.margin = '1%'
-    
-    //create slider
-    let sliderContainer = document.createElement('div')
-    sliderContainer.classList.add('w3-content', 'w3-display-container')
-    let slider = document.createElement('div')
-    slider.classList.add('w3-display-container', 'mySlides')    
+
+    let slide = document.createElement('div')   
     let image = document.createElement('img')
     image.src = this.options.image
-    image.style.width = '100%'
-    slider.append(image)
-    let imageCaption = document.createElement('div')
-    imageCaption.classList.add('w3-display-bottommiddle', 'w3-large', 'w3-container', 'w3-padding-5', 'w3-black')
-    imageCaption.append(this.options.title + ' - ' + this.options.subtitle)
-    slider.append(imageCaption)
-    sliderContainer.appendChild(slider)
-    
-    //Create card header
-    let cardHeader = document.createElement('div')
-    cardHeader.style.height = '15%'
-
-    //-->Create card title
-    let headerTitle = document.createElement('div')
-    headerTitle.append(this.options.name)
-    headerTitle.style.textAlign = 'center'
-    headerTitle.style.color = '#dddddd'
-    cardHeader.append(headerTitle)
-    
-    section.append(sliderContainer)
+    slide.appendChild(image)
+    //section.append(container)
     
     //section.append(cardFooter)
     
-  return section
+  return slide
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Section;
+/* unused harmony export default */
 
 
 
